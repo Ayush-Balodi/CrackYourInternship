@@ -1,7 +1,7 @@
 /* 
     https://github.com/Ayush-Balodi/CrackYourInternship.git
 
-    TC = O(n)
+    TC = O(n) + O(nlogn) = O(nlogn)
     SC = O(1) as no extra space is consumed.
 */
 class Solution {
