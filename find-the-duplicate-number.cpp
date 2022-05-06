@@ -1,6 +1,7 @@
 /* 
     https://github.com/Ayush-Balodi/CrackYourInternship.git
-
+    https://leetcode.com/problems/find-the-duplicate-number/
+    
     TC = O(n) + O(nlogn) = O(nlogn)
     SC = O(1) as no extra space is consumed.
 */
