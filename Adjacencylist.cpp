@@ -10,7 +10,7 @@ class Solution {
     // Function to return the adjacency list for each vertex.
     vector<vector<int>> printGraph(int V, vector<int> adj[]) {
         
-        vector<vector<int>> v;
+        vector<vector<int>> p;
         vector<int> l1;
         
         for( int i=0 ; i<V ; i++ ){
@@ -18,9 +18,9 @@ class Solution {
             for( int j=0 ; j<adj[i].size() ; j++){
                 l1.push_back(adj[i][j]);
             }
-            v.push_back(l1);
+            p.push_back(l1);
             l1.clear();
         }
-        return v;
+        return p;
     }
 };
