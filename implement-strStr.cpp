@@ -29,3 +29,21 @@ public:
         return -1;
     }
 };
+
+/*
+    TC = O(log(n))
+    SC = O(1)
+*/
+
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        if( haystack == "" ){
+            return -1;
+        }
+        if( needle == "" ){
+            return 0;
+        }
+        return haystack.find(needle);
+    }
+};
