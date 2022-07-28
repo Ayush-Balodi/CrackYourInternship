@@ -4,6 +4,7 @@
 
     TC = O(1)
     SC = O(1)
+    20ms
 */
 
 class Solution {
@@ -62,3 +63,35 @@ public:
         return true;
     }
 };
+
+/*
+    Java code
+    TC = O(1)
+    SC = O(1)
+
+    25ms
+    It should be fast as it is providing result in ine iteration.
+*/
+
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        
+        HashSet st = new HashSet();
+        
+        for( int i=0 ; i<9 ; i++ ){
+            for( int j=0 ; j<9 ; j++ ){
+                
+                if( board[i][j] != '.' ){
+                    
+                    if( !st.add("row"+i+board[i][j]) || !st.add("col"+j+board[i][j]) ){
+                        return false;
+                    }
+                    if( !st.add("box"+(i/3)+j/3+board[i][j]) ){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+}
