@@ -69,3 +69,18 @@ public:
         return -1;
     }
 };
+
+/*Java solution*/
+class Solution {
+    public int firstUniqChar(String s) {
+        
+        HashMap<char,int> m = new HashMap<>();
+        int n = s.length();
+        
+        for( int i=0 ; i<n ; i++ ){
+            m.put(s[i],i);
+            
+        }
+        
+    }
+}
