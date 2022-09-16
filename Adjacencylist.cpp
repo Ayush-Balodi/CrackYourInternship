@@ -11,7 +11,7 @@ class Solution {
     vector<vector<int>> printGraph(int V, vector<int> adj[]) {
         
         vector<vector<int>> p;
-        vector<int> l1;
+        vector<int> l1; // vector to store
         
         for( int i=0 ; i<V ; i++ ){
             l1.push_back(i);
