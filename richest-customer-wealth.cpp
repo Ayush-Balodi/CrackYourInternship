@@ -5,6 +5,7 @@
     TC = O(n.m)
     SC = O(n.m)
     Auxiliary space = O(1)
+    we just sump up and check for max sum out of them
 */
 
 class Solution {
