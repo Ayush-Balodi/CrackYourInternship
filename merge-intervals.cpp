@@ -1,6 +1,6 @@
 /*
     https://github.com/Ayush-Balodi/CrackYourInternship.git
-    https://leetcode.com/problems/contains-duplicate-ii/
+    https://leetcode.com/problems/merge-intervals/
 
     TC = O(nlog(n)) + O(n) = O(nlog(n))
     SC = O(n) 
