@@ -1,6 +1,6 @@
 /*
     https://github.com/Ayush-Balodi/CrackYourInternship.git
-    https://leetcode.com/problems/group-anagrams
+    https://leetcode.com/problems/maximum-difference-between-increasing-elements
 
     TC = O(n^2)
     Auxiliary space = O(1)
