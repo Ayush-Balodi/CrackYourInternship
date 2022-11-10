@@ -39,3 +39,23 @@ public:
         return ans;
     }
 };
+
+/*
+In this approach we make use of extra string where we store the current character and if we found the last character of the new string equal to the string current charater than we pop it from the new string.
+
+TC = O(n)
+Auxiliary space = O(n)
+Still don't get it, see the code:-)
+*/
+
+class Solution {
+public:
+    string removeDuplicates(string str) {
+        string ans;
+        for( auto c : str ){
+            if(ans.size() && ans.back()==c){ans.pop_back();}
+            else{ans.push_back(c);}
+        }
+        return ans;
+    }
+};
