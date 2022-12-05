@@ -11,29 +11,13 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
+        //rabbit and tortoise approach
         
-        if(head == NULL || head->next == NULL ){
-            return head;
+        ListNode *slow=head , *fast=head;
+        while( fast!=NULL && slow!=NULL && fast->next!=NULL ){
+            slow = slow->next;
+            fast = fast->next->next;
         }
-        ListNode* temp=head;
-        int c=0;
-        
-        while( temp != NULL ){
-            c++;
-            temp = temp->next;
-        }
-        int ans;
-        if( c%2 != 0 ){
-            ans = (c+1)/2;
-        }
-        else{
-            ans = c/2+1;
-        }
-        
-        temp = head;
-        while(--ans){
-            temp = temp->next;
-        }
-        return temp;
+        return slow;
     }
 };
