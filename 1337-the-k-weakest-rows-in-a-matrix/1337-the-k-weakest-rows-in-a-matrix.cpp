@@ -12,6 +12,9 @@ public:
                 if(mat[i][j] == 1){
                     c++;
                 }
+                else{
+                    break;
+                }
             }
             pq.push({c,i});
         }
