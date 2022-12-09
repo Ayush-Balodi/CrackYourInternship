@@ -10,38 +10,26 @@
  * };
  */
 class Solution {
-private:
-    int helper( TreeNode* root , vector<pair<int,int>> &v ){
-        if( root == NULL ){
-            return 0;
-        }
-        int c1 = 1 + helper( root->left , v );
-        int c2 = 1 + helper( root->right , v );
-        v.push_back({root->val,(c1+c2)/2-1});
-        cout << "root->val = " << root->val << " " << (c1+c2)/2-1 <<endl;
-        return c1+c2;
-    }
 public:
+    int result=0;
+    
+    void helper( TreeNode* root , int currMax , int currMin ){
+        if( root == NULL ){
+            return;
+        }
+        int possible = max(abs(root->val-currMax),abs(root->val-currMin));
+        result = max( result , possible );
+        currMax = max( currMax , root->val );
+        currMin = min( currMin , root->val );
+        
+        helper( root->left , currMax , currMin );
+        helper( root->right , currMax , currMin );
+        return;        
+    }
+    
     int maxAncestorDiff(TreeNode* root) {
         
-        vector<pair<int,int>> v;
-        int c = helper( root , v );
-        int n = v.size();
-        int maxval = INT_MIN;
-        
-        cout << "MAXVAL" << endl;
-        for( int i=n-1 ; i>=0 ; i-- ){
-            int count = v[i].second;
-            int j=i-1;
-            while( count-- ){
-                int temp = fabs(v[i].first - v[j].first);
-                if(  temp > maxval ){
-                    maxval = fabs(v[i].first - v[j].first);
-                    cout << maxval << " ";
-                }
-                j--;
-            }
-        }
-        return maxval;
+        helper( root , root->val , root->val );
+        return result;
     }
 };
