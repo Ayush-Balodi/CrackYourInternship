@@ -1,17 +1,18 @@
 class Solution {
 public:
-    int fillCups(vector<int>& nums) {
-        
-        priority_queue<int,vector<int>,greater<int>> pq(nums.begin(),nums.end());
-        
-        int sum=0;
-        int first = pq.top(); pq.pop();
-        sum+=first;
-        int second = pq.top(); pq.pop();
-        sum +=second + pq.top();
-        if( first + second > pq.top() ){
-            return  sum/2 + sum%2;
+    int fillCups(vector<int>& amount) {
+        priority_queue<int> pq(amount.begin() , amount.end() );
+        int ans=0;
+        while( !pq.empty() ){
+            int first = pq.top(); pq.pop();
+            int second = pq.top(); pq.pop();
+            if( first<=0 && second<=0 ){ break; }
+            first--; 
+            second--;
+            pq.push(first);
+            pq.push(second);
+            ans++;
         }
-        return pq.top();        
+        return ans;
     }
 };
