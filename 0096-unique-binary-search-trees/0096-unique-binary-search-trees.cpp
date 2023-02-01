@@ -1,14 +1,15 @@
 class Solution {
 public:
-    int numTrees(int n) {
-        
-        vector<int> dp(n+1,0);
-        dp[0] = dp[1] = 1; 
-        for( int i=2 ; i<=n ; i++ ){
-            for( int j=0 ; j<i ; j++ ){
-                dp[i] += dp[j] * dp[i-j-1];
-            }
+    long long int binomial( int n , int k ){
+        if( k > n-k ){ k=n-k; }
+        long long int result = 1;
+        for( int i=0 ; i<k ; i++ ){
+            result *= (n-i);
+            result /= (i+1);
         }
-        return dp[n];
+        return result;
+    }
+    int numTrees(int n) {
+        return binomial(n<<1,n)/(n+1); // 2n=>(n<<1)
     }
 };
