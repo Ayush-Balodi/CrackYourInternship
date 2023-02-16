@@ -1,16 +1,16 @@
 class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) {
-        vector<int> ans;
-        int n=digits.size(), curr=1, i=n;
-        while( --i>=0 || curr>0 ){
-            if(i>=0){
-                curr += digits[i];
+        int n=digits.size();
+        for( int i=n-1 ; i>=0 ; i-- ){
+            if( digits[i]<9 ){
+                digits[i]++;
+                return digits;
             }
-            ans.push_back(curr%10);
-            curr /= 10;
+            digits[i]=0;
         }
-        reverse(ans.begin() , ans.end());
+        vector<int> ans(n+1,0);
+        ans[0] = 1;
         return ans;
     }
 };
