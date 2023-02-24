@@ -1,30 +1,26 @@
 class Solution {
 public:
+    typedef pair<int,int> P;
     vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
         
-        int n=mat.size() , m=mat[0].size();
-        int c;
+        int n=mat.size(), m=mat[0].size();
+        priority_queue<P,vector<P>,greater<P>> pq;
         
-        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
         for( int i=0 ; i<n ; i++ ){
-            c=0;
+            int c=0;
             for( int j=0 ; j<m ; j++ ){
-                if(mat[i][j] == 1){
+                if( mat[i][j] == 1 ){
                     c++;
-                }
-                else{
-                    break;
                 }
             }
             pq.push({c,i});
         }
         
-        vector<int> v;
-        while( !pq.empty() && k-- ){
-            int top = pq.top().second;
-            v.push_back(top);
+        vector<int> ans;
+        while( k-- ){
+            ans.push_back(pq.top().second);
             pq.pop();
         }
-        return v;
+        return ans;
     }
 };
