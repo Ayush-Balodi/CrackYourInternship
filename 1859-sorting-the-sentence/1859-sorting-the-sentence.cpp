@@ -6,26 +6,19 @@ public:
         istringstream ss(s);
         string word;
         while( ss>>word ){
-            string ch="";
-            for( auto x:word ){
-                if( x>='0' && x<='9' ){
-                    v.push_back({x,ch});
-                    break;
-                } 
-                ch += x;
-            }
+            int n=word.size();
+            int i=word[n-1];
+            word.pop_back();
+            v.push_back({i,word});
         }
         
         sort(v.begin() , v.end());
         string answer="";
         
-        int n = v.size();
-        for( int i=0; i<n ; i++ ){
-            answer += v[i].second;
-            if( i!=n-1 ){
-                answer += ' ';
-            }
+        for( auto x:v ){
+            answer += x.second+" ";
         }
+        answer.pop_back();
         return answer;
     }
 };
