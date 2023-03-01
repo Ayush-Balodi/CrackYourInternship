@@ -1,19 +1,21 @@
 class Solution {
 public:
     int finalValueAfterOperations(vector<string>& operations) {
-        int ans=0;
+        
+        int count=0;
         for( auto x:operations ){
-            for( int i=0 ; i<x.size() ; i++ ){
-                if(x[i]=='+'){
-                    ans++;
+            int n=x.size();
+            for( int i=0 ; i<n ; i++ ){
+                if(x[i] == '+'){
+                    count += 1;
                     break;
                 }
-                if(x[i] == '-'){
-                    ans--;
+                if( x[i] == '-'){
+                    count -= 1;
                     break;
                 }
             }
         }
-        return ans;
+        return count;
     }
 };
