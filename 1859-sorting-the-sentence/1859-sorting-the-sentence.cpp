@@ -1,24 +1,24 @@
 class Solution {
 public:
     string sortSentence(string s) {
-        vector<pair<int,string>> v;
         
+        priority_queue<pair<int,string> , vector<pair<int,string>>, greater<pair<int,string>> > pq;
         istringstream ss(s);
         string word;
-        while( ss>>word ){
-            int n=word.size();
-            int i=word[n-1];
+        while(ss>>word){
+            int x=word.length(),m;
+            m=word[x-1];
             word.pop_back();
-            v.push_back({i,word});
+            pq.push({m,word});
         }
         
-        sort(v.begin() , v.end());
-        string answer="";
-        
-        for( auto x:v ){
-            answer += x.second+" ";
+        string ans="";
+        while(!pq.empty()){
+            ans+=pq.top().second;
+            ans+=" ";
+            pq.pop();
         }
-        answer.pop_back();
-        return answer;
+        ans.pop_back();
+        return ans;
     }
 };
