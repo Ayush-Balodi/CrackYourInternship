@@ -1,3 +1,9 @@
+/*
+    1.> First I've made a frequency map
+    2.> Then build a maxheap based on the frequency
+    3.> I've make the queue which is consisting of time period for which cpu will remain ideal if we use that character again
+    4.> We iterate and do this task until the q is not empty or pq is not empty
+*/
 class Solution {
 public:
     int leastInterval(vector<char>& tasks, int n) {
