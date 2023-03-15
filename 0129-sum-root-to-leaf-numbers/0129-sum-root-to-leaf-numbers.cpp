@@ -11,30 +11,23 @@
  */
 class Solution {
 private:
-    void helper( TreeNode* root , string temp, vector<string> &ans ){
+    int s=0;
+    void helper( TreeNode* root, int sum ){
         if( root == NULL ){
             return;
         }
-        if( root->left == NULL && root->right==NULL ){
-            temp.push_back(root->val+'0');
-            ans.push_back(temp);
+        sum = sum*10+ root->val;
+        if(root->left == NULL && root->right == NULL){
+            s+=sum;
             return;
         }
-        temp.push_back(root->val+'0');
-        helper(root->left, temp, ans);
-        helper(root->right, temp, ans);
+        helper(root->left, sum);
+        helper(root->right, sum);
         return;
     }
 public:
     int sumNumbers(TreeNode* root) {
-        int sum=0;
-        vector<string> ans;
-        helper( root, "", ans );
-        int n=ans.size();
-        for( int i=0 ; i<n ; i++ ){
-            cout << ans[i] << " ";
-            sum += stoi(ans[i]);
-        }
-        return sum;
+        helper( root , 0 );
+        return s;
     }
 };
