@@ -10,31 +10,28 @@
  * };
  */
 class Solution {
-private:
-    int depth( TreeNode* root ){
-        if( root == NULL ){
-            return 0;
-        }
-        int c1 = 1+depth(root->left);
-        int c2 = 1+depth(root->right);
-        return max(c1,c2);
-    }
-    void helper( TreeNode* root, int &sum ,int i, int depth){
-        if( root == NULL ){
-            return;
-        }
-        if(i==depth-1){
-            sum+=root->val;
-        }
-        helper(root->left, sum, i+1, depth);
-        helper(root->right, sum, i+1, depth);
-        return;
-    }
 public:
     int deepestLeavesSum(TreeNode* root) {
-        int d=depth(root);
-        int sum=0;
-        helper(root, sum, 0, d);
+        //SimpleBFS
+        queue<TreeNode*> q;
+        q.push(root);
+        int sum;
+        
+        while(!q.empty()){
+            sum=0;
+            int size = q.size();
+            while(size--){
+                TreeNode* temp = q.front();
+                q.pop();
+                sum+=temp->val;
+                if( temp->left != NULL ){
+                    q.push(temp->left);
+                }
+                if( temp->right != NULL ){
+                    q.push(temp->right);
+                }
+            }
+        }
         return sum;
     }
 };
