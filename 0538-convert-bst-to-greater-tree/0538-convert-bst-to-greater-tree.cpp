@@ -15,8 +15,7 @@ private:
         if( root==NULL )
             return;
         helper( root->right, sum );
-        sum += root->val;
-        root->val = sum;
+        root->val = sum += root->val;
         helper( root->left, sum );
         return;
     }
