@@ -5,8 +5,9 @@ class Solution {
 public:
     int firstBadVersion(int n) {
         int low=0, high=n-1;
-        while( low<=high ){
-            int mid = low+(high-low)/2;
+        
+        while(low<=high){
+            int mid=low+(high-low)/2;
             if( !isBadVersion(mid) ){
                 low = mid+1;
             }
