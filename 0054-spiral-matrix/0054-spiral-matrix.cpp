@@ -21,7 +21,7 @@ public:
             }
             
             column_end-=1;
-        
+            if(column_start > column_end || row_start > row_end) break;
             for( int col=column_end ; col>=column_start ; col-- ){
                 nums.push_back(matrix[row_end][col]);
             }
@@ -34,6 +34,6 @@ public:
             
             column_start+=1;
         }
-        return {nums.begin(),nums.begin()+m*n};
+        return nums;
     }
 };
