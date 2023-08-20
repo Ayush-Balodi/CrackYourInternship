@@ -2,12 +2,13 @@ class Solution {
 public:
     int minimumSum(int n, int k) {
         
-        unordered_set<int> st;
-        int sum=0;
-        for( int i=1 ; st.size()<n ; i++ ){
-            if( st.find(k-i) == st.end() ){
-                st.insert(i);
-                sum += i;
+        int sum=0, last=max(n, k-1);
+        for( int i=1 ; i<=n ; i++ ){
+            sum += i;
+            int num2 = k-i;
+            if( num2 >i and num2<=n ){
+                ++last;
+                sum = last + sum - num2;
             }
         }
         return sum;
