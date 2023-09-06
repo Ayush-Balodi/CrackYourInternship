@@ -2,30 +2,27 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         
-        int  n = nums.size();
-        vector<pair<int,int>> v;
+        int n=n=nums.size();
+        vector<pair<int,int>> vp;
         for( int i=0 ; i<n ; i++ ){
-            v.push_back(make_pair(nums[i],i));
+            vp.push_back({nums[i],i});
         }
         
-        sort(v.begin() , v.end());
+        sort(vp.begin(), vp.end());
+        int l=0, h=n-1;
         
-        int low=0, high=n-1;
-        vector<int> ans;
-        
-        while( low <= high ){
-            if( (v[low].first + v[high].first) == target){
-                ans.push_back(v[low].second);
-                ans.push_back(v[high].second);
-                break;
+        while( l<h ){
+            int sum = vp[l].first + vp[h].first;
+            if( sum == target ){
+                return {vp[l].second, vp[h].second};
             }
-            else if( (v[low].first + v[high].first) < target ){
-                low++;
+            else if( sum < target ){
+                l++;
             }
             else{
-                high--;
+                h--;
             }
         }
-        return ans;
+        return {};
     }
 };
