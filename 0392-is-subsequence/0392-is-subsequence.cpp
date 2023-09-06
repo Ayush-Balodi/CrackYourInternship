@@ -1,18 +1,20 @@
 class Solution {
 public:
     bool isSubsequence(string s, string t) {
-        int n1=t.length(), n2=s.length();
         
-        if( n2==0 )
+        int m=s.size(), n=t.size();
+        if( m == 0 ){
             return true;
-        if( n1==0 )
+        }
+        if( n == 0 ){
             return false;
-        
-        int c=0, k=0;
-        for( int i=0; i<n1; i++ ){
+        }
+        int k=0;
+        for( int i=0 ; i<n ; i++ ){
             if( t[i] == s[k] ){
-                if( k==n2-1 )
+                if( k==m-1 ){
                     return true;
+                }
                 k++;
             }
         }
