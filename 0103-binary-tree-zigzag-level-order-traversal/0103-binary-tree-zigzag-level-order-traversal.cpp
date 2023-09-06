@@ -18,15 +18,18 @@ public:
         vector<vector<int>> ans;
         queue<TreeNode*> q;
         q.push(root);
-        int rot = -1;
-        vector<int> temp;
+        bool flag = true;
         
         while( !q.empty() ){
             int s=q.size();
-            
+            vector<int> temp(s);
             for( int i=0 ; i<s ; i++ ){
                 TreeNode* curr = q.front(); q.pop();
-                temp.push_back(curr->val);
+                
+                //determining the position according to flag
+                int index = flag ? i:(s-i-1);
+                temp[index] = curr->val;
+                
                 if( curr->left != NULL ){
                     q.push(curr->left);
                 }
@@ -34,10 +37,7 @@ public:
                     q.push(curr->right);
                 }
             }
-            if(rot == 1){
-                reverse( temp.begin(), temp.end());
-            }
-            rot*=-1;
+            flag = !flag;
             ans.push_back(temp);
             temp.clear();
         }
