@@ -1,27 +1,35 @@
 class Solution {
 public:
-    int minFallingPathSum(vector<vector<int>>& matrix) {
-        int n=matrix.size();
-        vector<vector<int>> dp(n, vector<int>(n,0));
-        for( int i=0 ; i<n ; i++ ){
-            for( int j=0 ; j<n ; j++ ){
-                
-                if( i == 0 ){
-                    dp[i][j] = matrix[i][j];
-                    continue;
-                }
-                if( j == 0 ){
-                    dp[i][j] = min((dp[i-1][j]+matrix[i][j]), (dp[i-1][j+1]+matrix[i][j]));
-                }
-                else if( j == n-1 ){
-                    dp[i][j] = min((dp[i-1][j]+matrix[i][j]), (dp[i-1][j-1]+matrix[i][j]));
-                }
-                else{
-                    dp[i][j] = min(min(dp[i-1][j]+matrix[i][j], dp[i-1][j-1]+matrix[i][j]), dp[i-1][j+1]+matrix[i][j]);
-                }
-            }
+    int helper( vector<vector<int>> &nums, int i, int j, map<string,int> &mp ){
+        
+        int r=nums.size();
+        int c=nums[0].size();
+        
+        if( i == r ){
+            return 0;
+        }
+        if( j<0 or j>=c ){
+            return INT_MAX;
+        }
+        string key = to_string(i)+"silki"+to_string(j);
+        if( mp.find(key) != mp.end() ){
+            return mp[key];
         }
         
-        return *min_element(begin(dp[n-1]), end(dp[n-1]));
+        int op1 = helper( nums, i+1, j, mp );
+        int op2 = helper( nums, i+1, j-1, mp );
+        int op3 = helper( nums, i+1, j+1, mp );
+        
+        mp.insert({key, nums[i][j] + min(op1, min(op2,op3))});
+        return mp[key];
+    }
+    int minFallingPathSum(vector<vector<int>>& nums) {
+        
+        map<string,int> mp;
+        int n=nums.size(), ans=INT_MAX;
+        for( int i=0 ; i<n ; i++ ){
+            ans = min(ans, helper( nums, 0, i, mp ));
+        }
+        return ans;
     }
 };
