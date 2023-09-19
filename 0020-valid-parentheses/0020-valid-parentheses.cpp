@@ -1,42 +1,37 @@
 class Solution {
 public:
-    bool isTrue( char s2, char s1 ){
-        if( s1 == '(' and s2==')' ){
+    bool match( char c1, char c2 ){
+        if( c1=='(' and c2==')' ){
             return true;
         }
-        else if( s1 == '{' and s2=='}' ){
+        else if( c1=='[' and c2==']' ){
             return true;
         }
-        else if( s1 == '[' and s2==']' ){
+        else if( c1=='{' and c2=='}' ){
             return true;
         }
         return false;
     }
+    
     bool isValid(string str) {
-        
         stack<char> st;
-        char top;
+        
         for( auto x:str ){
-            if( x=='(' or x=='{' or x=='[' ){
+            
+            if( x=='(' or x=='[' or x=='{' ){
                 st.push(x);
             }
-            else if( x==')' or x=='}' or x==']' ){
-                
-                if( !st.empty() ){
-                    top = st.top();
+            if( x==')' or x==']' or x=='}' ){
+                if( !st.empty() and match(st.top(),x) ){
                     st.pop();
-                    if( !isTrue(x,top) ){
-                        return false;
-                    }
                 }
                 else{
                     return false;
                 }
             }
         }
-        if( st.empty() ){
-            return true;
-        }
+        
+        if(st.empty()){ return true; }
         return false;
     }
 };
