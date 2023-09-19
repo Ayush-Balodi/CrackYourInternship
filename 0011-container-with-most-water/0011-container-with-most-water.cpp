@@ -4,20 +4,19 @@ public:
         
         int n=height.size();
         int l=0, h=n-1;
-        vector<int> area;
+        int maxarea=INT_MIN;
         
         while( l<h ){
+            int area = (h-l)*min(height[l], height[h]);
             
-            int arr=(h-l)*min(height[l], height[h]);
-            area.push_back(arr);
             if( height[l] < height[h] ){
                 l++;
             }
             else{
                 h--;
             }
+            maxarea = max(maxarea, area);
         }
-        
-        return *max_element(area.begin(), area.end());
+        return maxarea;
     }
 };
