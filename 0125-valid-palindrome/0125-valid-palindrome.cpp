@@ -1,19 +1,20 @@
 class Solution {
 public:
     bool isPalindrome(string s) {
-        int n=s.length();
+        
         string temp="";
-        for( int i=0 ; i<n ; i++ ){
-            s[i] = tolower(s[i]);
-            if( (s[i]>='a' && s[i]<='z') || (s[i]>='0' && s[i]<='9') ){
-                temp+=s[i];
+        for( auto x:s ){
+            if( isalnum(x) ){
+                temp+=tolower(x);    
             }
         }
-        n=temp.length();
-        for( int i=0 ; i<n/2 ; i++ ){
-            if(temp[i] != temp[n-i-1]){
+        int n=temp.size();
+        int l=0, h=n-1;
+        while( l<=h ){
+            if( temp[l] != temp[h] ){
                 return false;
-            }
+            } 
+            l++;h--;
         }
         return true;
     }
