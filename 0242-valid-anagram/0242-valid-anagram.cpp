@@ -2,17 +2,17 @@ class Solution {
 public:
     bool isAnagram(string s, string t) {
         
-        int n=s.size(), m=t.size();
-        if( n != m ){ return false; }
-        map<char,int> m1;
-        map<char,int> m2;
-        
-        for( int i=0 ; i<n ; i++ ){
-            m1[s[i]]++;
-            m2[t[i]]++;
+        if( s.size() != t.size() ){
+            return false;
         }
+        int m=s.size();
+        map<char,int> mp1;
+        map<char,int> mp2;
         
-        if( m1 == m2 ){ return true;}
-        return false;
+        for( int i=0 ; i<m ; i++ ){
+            mp1[s[i]]++;
+            mp2[t[i]]++;
+        }
+        return mp1==mp2;
     }
 };
