@@ -15,6 +15,8 @@ public:
             v[i] += cookies[start];
             helper(cookies, start+1, v, k );
             v[i] -= cookies[start];
+            //optimization for the duplicate subsets in the v like [33,0] or [0,33]
+            if( v[i] == 0 ){ break; }
         }
         return;
     }
